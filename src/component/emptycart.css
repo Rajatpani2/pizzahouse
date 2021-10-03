@@ -1,0 +1,18 @@
+:root{
+    --background1:rgb(243, 193, 186);
+    --border1:rgb(202, 7, 7);
+}
+.empty_cart{
+    background-color: var(--background1);
+    border-left: 7px solid var(--border1);
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height:70vh;
+    margin: 5%;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 40px;
+    border-top-right-radius: 40px;
+
+}
