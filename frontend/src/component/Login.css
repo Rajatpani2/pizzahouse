@@ -1,0 +1,23 @@
+.form-contain{
+    display: flex;
+    /* width: 70%; */
+    flex-direction:row;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../slider_image/imge3.jpg')  ;
+    background-size: cover;
+}
+.login_form{
+    display: flex;
+    background-color: rgb(0, 0, 0,0.5) ;
+    height: 60vh;
+    width: 40vw;
+    align-items: center;
+    justify-content: center;
+    /* flex-direction: row; */
+}
+.insideform{
+    background-color: brown;
+
+}

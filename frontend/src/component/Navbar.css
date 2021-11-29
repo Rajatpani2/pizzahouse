@@ -1,0 +1,83 @@
+:root{
+    --text:#ffffff;
+    --backgnd:#3b3838;
+    --dropbackgnd:black;
+}
+.fa_bars {
+    display: none;
+    margin-left: auto;
+    font-size: 15px;
+}
+.fa_timess{
+    margin-left: auto;
+    font-size: 17px;
+    display: none;
+}
+.dropdown, .dropdwon_off{
+    display: none;
+}
+
+
+
+
+
+@media screen and (max-width:800px){
+    .navbar_form ,.mr-auto{
+        display: none;
+    }
+
+    .fa_bars , .fa_timess{
+        display: block;
+        cursor: pointer;
+    }
+    .dropdown{
+        display: block;
+        position: fixed;
+        z-index: 30;
+        background-color:var(--backgnd);
+        height: 100%;
+        width: 40%;
+        transition: 0.3s;
+        left:0;
+    }
+    .dropdown ul{
+        list-style-type: none;
+        padding-left: 0;
+    }
+    .dropdown li{
+        padding: 10px 5px;
+        text-align: center;
+        color: var(--text);
+        cursor: pointer;
+    }
+    .dropdwon_off{
+        display: block;
+        position: fixed;
+        z-index: 10;
+        background-color: blueviolet;
+        height: 100%;
+        width: 40%;
+        left: -100%;
+        transition: 0.3s;
+    }
+    .dropdwon_off ul{
+        list-style-type: none;
+        padding-left: 0;
+    }
+    .dropdwon_off li{
+        padding: 10px 5px;
+        text-align: center;
+    }
+
+    .dropdown li:hover {
+        background-color: var(--dropbackgnd);
+        
+    }
+
+    
+   
+    
+
+    
+    
+}
