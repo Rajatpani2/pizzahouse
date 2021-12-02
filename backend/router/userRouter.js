@@ -61,12 +61,14 @@ router.post("/login" ,async(req,res)=>{
     const { email , password} = req.body
 try{
     if(!email || !password){
-        res.status(422).send({message:"must enter all the field"})
+        res.status(492).send({message:"must enter all the field"})
     }else{
 
     const user = await usermodel.findOne({email:email})
     if(!user){
-        res.status(422).send({message:"email id not found"})
+        // res.status(422).send({message:"email id not found"})
+        res.status(493).send({message:"email id not found"})
+
     }else{
 
         const isMatching = await bcrypt.compare(req.body.password , user.password)
@@ -80,7 +82,7 @@ try{
            res.status(200).send(user)
            
          }else{
-             res.status(422).send({message:"user authentication wrong"})
+             res.status(432).send({message:"user authentication wrong"})
          }
     }
     }

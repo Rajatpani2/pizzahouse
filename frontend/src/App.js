@@ -217,10 +217,7 @@ function App() {
 
              <Switch>
                 <Route path='/' exact > <HomePage fetchpizza= {fetchpizza} fetchburgers={fetchburger} pizza_adder= {addItem}  pizza_deleter={dltItem} cartChk={cartChecker} item_description={item_description} description={description}/></Route>
-{/*                 
-                 {isempty ? <Route path='/cart' exact> <Cart List={cart}  cartChecker={cartChecker} changeHandler={handleChange} _name={details.name} _mobile={details.mobile} _altmobile={details.altmobile} _address={details.address} _pin={details.pin} _details={details} cart_empty={empty_cart}/>   </Route>:  <Route path='/cart'><EmptyCart/></Route>}
-                {isempty ? <Route path='/thanks' exact> <Thankspage List={cart} cartChecker={cartChecker}/></Route>:<EmptyCart/>}
-                   */}
+
                  <Route path='/thanks' exact><Thankspage List={cart} /></Route>
                  <Route path='/cart' exact>{isempty ? <Cart List={cart}  cartChecker={cartChecker} changeHandler={handleChange} _name={details.name} _mobile={details.mobile} _altmobile={details.altmobile} _address={details.address} _pin={details.pin} _details={details} cart_empty={empty_cart}/>:<EmptyCart/>}</Route>
                  <Route path="/signup" exact><Signup/></Route>
