@@ -76,7 +76,7 @@ try{
            const token = await user.generateAuthToken();
           
            res.cookie("logintoken" ,token ,{
-              expires:new Date(Date.now()*3600000),
+              expires:new Date(Date.now()+3600000),
               httpOnly:true
            })
            res.status(200).send(user)

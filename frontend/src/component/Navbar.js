@@ -33,11 +33,10 @@ const handleClickon = ()=>setclick(!click);
      <Link to="/login"> <Nav.Link href="/login">Login</Nav.Link></Link>
         
     </Nav>
-    {/* <Form inline className='navbar_form'>
-      <FormControl type="text" placeholder="search pizza" className="mr-sm-2" />
-      <Button variant="outline-info">Search</Button>
-    </Form> */}
+   
     <Link to='/cart' style={{color:'#ffffff', textDecoration:'none'}}>Cart <FontAwesomeIcon icon="shopping-cart" className='footer_icons' style={{color:'#ffffff', marginRight:'4px'}} onClick={cartChk}/></Link>
+    <Link to='' style={{color:'#ffffff', textDecoration:'none',marginLeft:"10px"}}>Guest <FontAwesomeIcon icon="user" className='footer_icons' style={{color:'#ffffff', marginRight:'4px'}}/></Link>
+
     {!click ? <FontAwesomeIcon icon="bars" style={{color:'white'}} onClick={handleClickon} className='fa_bars'/> :  <FontAwesomeIcon icon="times" style={{color:'white'}} onClick={handleClickon} className='fa_timess'/>}
     
     
