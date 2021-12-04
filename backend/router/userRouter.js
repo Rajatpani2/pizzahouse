@@ -5,8 +5,10 @@ const express = require("express")
 const router = express.Router()
 const usermodel = require("../models/userschema")
 const bcrypt = require("bcryptjs")
+const authenticate = require("../controller/authenticate")
+const cookieparser = require("cookie-parser")
 
-
+router.use(cookieparser())
 
 router.post("/signup", async (req,res)=>{
 
@@ -92,6 +94,16 @@ try{
     
 }
 
+})
+
+router.get("/navbar",authenticate ,async(req,res)=>{
+    try{
+       res.status(200).send(req.rootuser)
+       
+    }catch(e){
+     console.log(e);
+     
+    }
 })
 
 

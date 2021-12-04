@@ -1,4 +1,4 @@
-import React,{createContext} from 'react'
+import React,{createContext, useEffect} from 'react'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navvbar from './component/Navbar';
@@ -32,6 +32,8 @@ function App() {
   
 
       const [cart, setcart] = useState([]); //cart array
+      const [loggedUser, setLoggedUser] = useState() //loged in user data
+
 
 
       // check wheather the cart is empty of haveing some values
@@ -61,7 +63,7 @@ function App() {
         // eslint-disable-next-line
       var pizzas = await pizzas_from_bakend
       //  setPizzas(pizzas_from_bakend)
-       console.log(pizzas);
+      //  console.log(pizzas);
        return pizzas
        
      }
@@ -201,9 +203,36 @@ function App() {
     
 
 
-
-
+//loggedin users authentication function
+const loggedinUser = async()=>{
+  try{
+    const res = await fetch("/navbar",{
+      method:"GET",
+      headers:{
+        Accept:"application/json",
+      "Content-Type":"application/json"
+      },
+      credentials:"include"
+    })
+  
+    const userData = await res.json()
     
+    if(userData && res.status === 200){
+      setLoggedUser(userData)
+      
+  
+    }
+  }catch(e){
+   console.log(e);
+   
+  }
+  }
+
+
+  // authentication function call ends
+  useEffect(()=>{
+    loggedinUser()
+  },[])
     
        
 
@@ -213,7 +242,7 @@ function App() {
         
     <div className="App">
           <Router>
-             <Navvbar cartChk={cartChecker}/>
+             <Navvbar cartChk={cartChecker} loggedUser={loggedUser}/>
 
              <Switch>
                 <Route path='/' exact > <HomePage fetchpizza= {fetchpizza} fetchburgers={fetchburger} pizza_adder= {addItem}  pizza_deleter={dltItem} cartChk={cartChecker} item_description={item_description} description={description}/></Route>
@@ -221,7 +250,7 @@ function App() {
                  <Route path='/thanks' exact><Thankspage List={cart} /></Route>
                  <Route path='/cart' exact>{isempty ? <Cart List={cart}  cartChecker={cartChecker} changeHandler={handleChange} _name={details.name} _mobile={details.mobile} _altmobile={details.altmobile} _address={details.address} _pin={details.pin} _details={details} cart_empty={empty_cart}/>:<EmptyCart/>}</Route>
                  <Route path="/signup" exact><Signup/></Route>
-                 <Route path="/login" exact><Login/></Route>
+                 <Route path="/login" exact><Login logedinuserdata={loggedinUser}/></Route>
            </Switch>
          </Router>
        

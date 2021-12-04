@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "./Login.css"
 import { useHistory } from 'react-router-dom'
 
-const Login = () => {
+const Login = ({logedinuserdata}) => {
 
 const [login_user, setLogin_user] = useState({
     email:"",
@@ -31,9 +31,10 @@ const handleSubmit_login=async(e)=>{
          credentials:"include"
      })
      await res.json()
-     console.log(res);
+    //  console.log(res);
      if(res.status === 200){
          window.alert("user login successfull")
+         logedinuserdata()
          history.push("/")
      }
      if(res.status === 492){

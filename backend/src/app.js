@@ -7,12 +7,14 @@ const productmodel = require("../models/productschema")
 const burgermodel = require("../models/burgerschema")
 // const { response } = require('express')
 const router = require("../router/userRouter")
+const cookieparser = require("cookie-parser")
 
 
 
 app.use(express.json())
 // app.use(bodyparser())
 app.use(router)
+app.use(cookieparser())
 
 
 
