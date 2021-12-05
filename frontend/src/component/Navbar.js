@@ -31,6 +31,7 @@ const handleClickon = ()=>setclick(!click);
      <Link to="/"><Nav.Link href="/">Home</Nav.Link></Link>
      <Link to="/signup"> <Nav.Link href="/signup">Signup</Nav.Link></Link>
      <Link to="/login"> <Nav.Link href="/login">Login</Nav.Link></Link>
+     <Link to="/logout"> <Nav.Link href="/logout">Logout</Nav.Link></Link>
         
     </Nav>
    
@@ -48,6 +49,7 @@ const handleClickon = ()=>setclick(!click);
      <Link to='/'><li>Home</li></Link> 
      <Link to="/signup"><li>Sign up</li></Link> 
      <Link to='/login'><li>Login</li></Link>
+     <Link to='/logout'><li>Logout</li></Link>
       
     </ul>
 

@@ -36,7 +36,14 @@ const userSChema = new mongoose.Schema({
            type:String,
            required:true
       }
-    }]
+    }],
+    cart:[
+        {
+           product:{
+               type:String
+           } 
+        }
+    ]
       
     
 
@@ -62,6 +69,20 @@ userSChema.methods.generateAuthToken = async function(){
      console.log(e);
      
     }
+}
+
+userSChema.methods.cartPushITems = async function(product_frm_client){
+    // console.log(product_frm_client);
+    try{
+        // console.log(this.cart);
+        
+     this.cart= this.cart.concat({product:product_frm_client})
+     await this.save()
+    }catch(e){
+     console.log(e);
+     
+    }
+    
 }
 
 
