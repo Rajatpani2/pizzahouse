@@ -12,6 +12,8 @@ function Cardd({fetchburgers , pizza_adder ,pizza_deleter ,cartChk,item_descript
 
   const [topupPage, settopupPage] = useState(false);
   const [burgerArray, setburgerArray] = useState([])
+  const [pageRefersh, setPageRefersh] = useState(true)
+
 
  
     
@@ -44,6 +46,24 @@ function Cardd({fetchburgers , pizza_adder ,pizza_deleter ,cartChk,item_descript
      
    }
 
+   //burger add function
+
+   const burger_add = (Main_id,id_key)=>{
+    //  let local_variable = pizzas
+     console.log("this is frontend");
+     
+            for(var i=0 ; i < burgerArray.length ; i++ ){
+              if( id_key === burgerArray[i].id){
+  
+                burgerArray[i].button =true
+                  // setPizzas(pizzas)
+                  setPageRefersh(!pageRefersh)
+  
+              }
+            
+            }
+    }
+
    useEffect(() => {
      jsonconverter()
      // eslint-disable-next-line
@@ -67,7 +87,7 @@ function Cardd({fetchburgers , pizza_adder ,pizza_deleter ,cartChk,item_descript
                                           <Card.Title>{item.BurgerName}<span style={{marginLeft: '16px' ,color:'red'}}>₹{item.price}</span></Card.Title>
                                              
                                              
-                                            <div style={{display:'flex'}}> { item.button ? <Button variant="primary" onClick={()=>pizza_deleter(item.Main_id,item.id)} style={{fontSize:'smaller',padding:'9px 4px',marginRight:'auto'}}>Remove from cart</Button> :<Button variant="primary" onClick={()=>pizza_adder(item.Main_id,item.id)}>Add to cart</Button>}
+                                            <div style={{display:'flex'}}> { item.button ? <Button variant="primary" onClick={()=>pizza_deleter(item.Main_id,item.id)} style={{fontSize:'smaller',padding:'9px 4px',marginRight:'auto'}}>Remove from cart</Button> :<Button variant="primary" onClick={()=>burger_add(item.Main_id,item.id)}>Add to cart</Button>}
                                              
                                              <Button variant="danger" onClick={()=>{
                                                                                   item_description(item.Main_id,item.id)

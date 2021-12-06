@@ -12,6 +12,7 @@ function Cardd({fetchpizza, pizza_adder ,pizza_deleter ,cartChk,item_description
 
   const [topupPage, settopupPage] = useState(false);
   const [pizzas, setPizzas] = useState([])
+  const [pageRefersh, setPageRefersh] = useState(true)
 
 
 
@@ -65,11 +66,22 @@ try{
      // eslint-disable-next-line
    },[])
 
-  
-  
+   
+  const pizza_add = (Main_id,id_key)=>{
+  //  let local_variable = pizzas
+   console.log("this is frontend");
+   
+          for(var i=0 ; i < pizzas.length ; i++ ){
+            if( id_key === pizzas[i].id){
 
-// console.log(pizzas[0].id);
+                pizzas[i].button =true
+                // setPizzas(pizzas)
+                setPageRefersh(!pageRefersh)
 
+            }
+          
+          }
+  }
 
     return (
       <>
@@ -85,7 +97,7 @@ try{
                                           <Card.Title>{item.PizzaName}<span style={{marginLeft: '16px' ,color:'red'}}>₹{item.price}</span></Card.Title>
                                              
                                              
-                                            <div style={{display:'flex'}}> { item.button ? <Button variant="primary" onClick={()=>pizza_deleter(item.Main_id,item.id)} style={{fontSize:'smaller',padding:'9px 4px',marginRight:'auto'}}>Remove from cart</Button> :<Button variant="primary" onClick={()=>pizza_adder(item.Main_id,item.id)}>Add to cart</Button>}
+                                            <div style={{display:'flex'}}> { item.button ? <Button variant="primary" onClick={()=>pizza_deleter(item.Main_id,item.id)} style={{fontSize:'smaller',padding:'9px 4px',marginRight:'auto'}}>Remove from cart</Button> :<Button variant="primary" onClick={()=>pizza_add(item.Main_id,item.id)}>Add to cart</Button>}
                                              
                                              <Button variant="danger" onClick={()=>{
                                                                                   item_description(item.Main_id,item.id)
