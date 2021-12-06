@@ -98,7 +98,12 @@ try{
 
 router.get("/navbar",authenticate ,async(req,res)=>{
     try{
-       res.status(200).send(req.rootuser)
+        if(req.rootuser){
+            res.status(200).send(req.rootuser)
+        }
+        else{
+            res.status(401).send({message:"cookies not found"})
+        }
        
     }catch(e){
      console.log(e);
