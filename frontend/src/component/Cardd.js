@@ -45,10 +45,7 @@ try{
       
       fetchpizza(items)
      
-      
       setPizzas(items)
-      
-     
       
     }
     
