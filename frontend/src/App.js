@@ -76,41 +76,6 @@ function App() {
       //  setBurgers(brugers_from_backend)
       return burgers
     }
-   
-  
-  
-   
-
-
-// console.log('4');
-
-      //addition part
-       const addItem = (Main_id,id_key) => {
-         
-        if(Main_id === items[0].Main_id){
-
-          for(var i=0 ; i < items.length ; i++ ){
-            if( id_key === items[i].id){
-                setcart([...cart,items[i]])
-                items[i].button = true ;
-            }
-          
-          }
-        }
-        if(Main_id === items2[0].Main_id){
-
-          for( i=0 ; i < items2.length ; i++ ){
-            if( id_key === items2[i].id){
-                setcart([...cart,items2[i]])
-                items2[i].button = true ;
-            }
-          
-          }
-        }
-           
-          
-           
-          }
           
         
       
@@ -118,7 +83,6 @@ function App() {
 
        const dltItem =(Main_id,id_key)=>{
               
-        if(Main_id === items[0].Main_id){
                   for( var i=0 ; i < items.length ; i++){
                        if(id_key === items[i].id){
                            
@@ -127,7 +91,7 @@ function App() {
                 }
                 setcart( cart.filter(item=> item.id   !==   id_key  ));
         }
-      }
+      
         if(Main_id === items2[0].Main_id){
           for(  i=0 ; i < items2.length ; i++){
             if(id_key === items2[i].id){
@@ -245,7 +209,7 @@ const loggedinUser = async()=>{
              <Navvbar cartChk={cartChecker} loggedUser={loggedUser}/>
 
              <Switch>
-                <Route path='/' exact > <HomePage fetchpizza= {fetchpizza} fetchburgers={fetchburger} pizza_adder= {addItem}  pizza_deleter={dltItem} cartChk={cartChecker} item_description={item_description} description={description}/></Route>
+                <Route path='/' exact > <HomePage fetchpizza= {fetchpizza} fetchburgers={fetchburger}  pizza_deleter={dltItem} cartChk={cartChecker} item_description={item_description} description={description}/></Route>
 
                  <Route path='/thanks' exact><Thankspage List={cart} /></Route>
                  <Route path='/cart' exact>{isempty ? <Cart List={cart}  cartChecker={cartChecker} changeHandler={handleChange} _name={details.name} _mobile={details.mobile} _altmobile={details.altmobile} _address={details.address} _pin={details.pin} _details={details} cart_empty={empty_cart}/>:<EmptyCart/>}</Route>

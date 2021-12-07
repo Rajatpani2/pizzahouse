@@ -83,6 +83,19 @@ try{
           }
   }
 
+  //pizza deledte
+
+  const dltpizza =(Main_id,id_key)=>{
+              
+    for( var i=0 ; i < pizzas.length ; i++){
+         if(id_key === pizzas[i].id){
+              pizzas[i].button = false;  
+  }
+  // setPizzas( pizzas.filter(item=> item.id   !==   id_key  ));
+   setPageRefersh(!pageRefersh)
+    }
+  }
+
     return (
       <>
       <h2 className='card_heading'>select from our wide range of pizzas..</h2>
@@ -97,7 +110,7 @@ try{
                                           <Card.Title>{item.PizzaName}<span style={{marginLeft: '16px' ,color:'red'}}>₹{item.price}</span></Card.Title>
                                              
                                              
-                                            <div style={{display:'flex'}}> { item.button ? <Button variant="primary" onClick={()=>pizza_deleter(item.Main_id,item.id)} style={{fontSize:'smaller',padding:'9px 4px',marginRight:'auto'}}>Remove from cart</Button> :<Button variant="primary" onClick={()=>pizza_add(item.Main_id,item.id)}>Add to cart</Button>}
+                                            <div style={{display:'flex'}}> { item.button ? <Button variant="primary" onClick={()=>dltpizza(item.Main_id,item.id)} style={{fontSize:'smaller',padding:'9px 4px',marginRight:'auto'}}>Remove from cart</Button> :<Button variant="primary" onClick={()=>pizza_add(item.Main_id,item.id)}>Add to cart</Button>}
                                              
                                              <Button variant="danger" onClick={()=>{
                                                                                   item_description(item.Main_id,item.id)
