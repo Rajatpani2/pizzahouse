@@ -186,6 +186,9 @@ const loggedinUser = async()=>{
       
   
     }
+    else{
+      setLoggedUser()
+    }
   }catch(e){
    console.log(e);
    
@@ -206,7 +209,7 @@ const loggedinUser = async()=>{
         
     <div className="App">
           <Router>
-             <Navvbar cartChk={cartChecker} loggedUser={loggedUser}/>
+             <Navvbar cartChk={cartChecker} loggedUser={loggedUser} loggedinUser={loggedinUser}/>
 
              <Switch>
                 <Route path='/' exact > <HomePage fetchpizza= {fetchpizza} fetchburgers={fetchburger}  pizza_deleter={dltItem} cartChk={cartChecker} item_description={item_description} description={description}/></Route>

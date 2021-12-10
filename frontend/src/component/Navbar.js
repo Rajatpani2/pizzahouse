@@ -3,13 +3,14 @@ import Navbar from 'react-bootstrap/Navbar'
 import {  Nav} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Navbar.css'
-import {Link } from 'react-router-dom';
+import {Link , useHistory} from 'react-router-dom';
 
 
 
-function Navvbar({cartChk,loggedUser}) {
+function Navvbar({cartChk,loggedUser,loggedinUser}) {
 
 const [click, setclick] = useState(false);
+const history= useHistory()
 
 useEffect(() => {
   
@@ -19,6 +20,30 @@ useEffect(() => {
 },[]);
 
 const handleClickon = ()=>setclick(!click);
+
+const logotfunction=async()=>{
+  // console.log('bla');
+  
+  try{
+    const res = await fetch("/logout",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+       credentials:"include"
+
+    })
+     await res.json()
+    if(res.status === 200 ){
+      alert("logout successfull")
+      loggedinUser()
+      history.push("/")
+    }
+   
+  }catch(e){
+   
+  }
+}
 
   
     return (
@@ -31,7 +56,7 @@ const handleClickon = ()=>setclick(!click);
      <Link to="/"><Nav.Link href="/">Home</Nav.Link></Link>
      <Link to="/signup"> <Nav.Link href="/signup">Signup</Nav.Link></Link>
      <Link to="/login"> <Nav.Link href="/login">Login</Nav.Link></Link>
-     <Link to="/logout"> <Nav.Link href="/logout">Logout</Nav.Link></Link>
+     <Link to="" onClick={logotfunction}> <Nav.Link href="" >Logout</Nav.Link></Link>
         
     </Nav>
    

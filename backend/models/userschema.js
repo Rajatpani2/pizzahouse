@@ -39,7 +39,7 @@ const userSChema = new mongoose.Schema({
     }],
     cart:[
         {
-           pizzaname:{
+            itemname:{
                type:String
            } ,
            price:{
@@ -85,7 +85,7 @@ userSChema.methods.generateAuthToken = async function(){
 }
 
 userSChema.methods.cartPushITems = async function(product_frm_client){
-    console.log(product_frm_client);
+    // console.log(product_frm_client);
     try{
         // console.log(this.cart);
         
@@ -97,13 +97,17 @@ userSChema.methods.cartPushITems = async function(product_frm_client){
     }
     
 }
-userSChema.methods.cartpopItems = async function(id){
-    try{
-     this.cart = this.cart.filter((items)=>{
-        items._id != id 
-     })
-     await this.save()
 
+
+userSChema.methods.cartpopItems = async function(id){
+    
+    try{
+        function filterArray(item){
+           return id !== item._id.toString()
+        }  
+      this.cart= this.cart.filter(filterArray)
+    await this.save()
+     
     }catch(e){
      console.log(e);
      

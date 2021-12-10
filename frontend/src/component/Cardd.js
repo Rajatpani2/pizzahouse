@@ -92,7 +92,7 @@ try{
         "Content-Type":"application/json"
       },
       body:JSON.stringify({
-        pizzaname:item_.BurgerName,
+        itemname:item_.PizzaName,
         price:item_.price,
         count:item_.count,
         Main_id:item_.Main_id,

@@ -111,5 +111,17 @@ router.get("/navbar",authenticate ,async(req,res)=>{
     }
 })
 
+router.post("/logout" ,authenticate,async(req,res)=>{
+try{
+ if(req.rootuser){
+     res.clearCookie("logintoken")
+     res.status(200).send({message:"logged out successfull"})
+ }
+}catch(e){
+ console.log(e);
+ 
+}
+})
+
 
 module.exports=router

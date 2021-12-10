@@ -6,6 +6,7 @@ const userSchema = require("../models/userschema")
 
 
 const authenticate = async(req,res,next)=>{
+// console.log('authenticate');
 
 try{
     const token = req.cookies.logintoken

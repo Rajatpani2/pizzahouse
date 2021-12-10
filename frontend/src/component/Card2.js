@@ -53,7 +53,7 @@ function Cardd({fetchburgers , pizza_adder ,pizza_deleter ,cartChk,item_descript
         "Content-Type":"application/json"
       },
       body:JSON.stringify({
-        pizzaname:item_.PizzaName,
+        itemname:item_.BurgerName,
         price:item_.price,
         count:item_.count,
         Main_id:item_.Main_id,
