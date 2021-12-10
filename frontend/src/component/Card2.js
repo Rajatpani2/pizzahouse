@@ -45,12 +45,30 @@ function Cardd({fetchburgers , pizza_adder ,pizza_deleter ,cartChk,item_descript
     }
      
    }
+   const pushItemtoCart = async (item_)=>{
+          
+    const res = await fetch("/additems",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        pizzaname:item_.PizzaName,
+        price:item_.price,
+        count:item_.count,
+        Main_id:item_.Main_id,
+        id:item_.id,
+        _id:item_._id
+      })
+    })
+
+    await res.json()
+  }
 
    //burger add function
 
    const burger_add = (Main_id,id_key)=>{
     //  let local_variable = pizzas
-     console.log("this is frontend");
      
             for(var i=0 ; i < burgerArray.length ; i++ ){
               if( id_key === burgerArray[i].id){
@@ -58,6 +76,7 @@ function Cardd({fetchburgers , pizza_adder ,pizza_deleter ,cartChk,item_descript
                 burgerArray[i].button =true
                   // setPizzas(pizzas)
                   setPageRefersh(!pageRefersh)
+                  pushItemtoCart(burgerArray[i])
   
               }
             
@@ -65,16 +84,39 @@ function Cardd({fetchburgers , pizza_adder ,pizza_deleter ,cartChk,item_descript
     }
 
     //delete burger
-
+    const  popItemfromCart=async(item_)=>{
+      // console.log(item_);
+      
+      try{
+        const res = await fetch("/removeitem",{
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify({ _id:item_._id})
+            
+          
+        }) 
+        await res.json()
+        
+  
+      }catch(e){
+      console.log(e);
+      
+      }
+        }
     
-  const dltpizza =(Main_id,id_key)=>{
+  const dltburger =(Main_id,id_key)=>{
               
     for( var i=0 ; i < burgerArray.length ; i++){
          if(id_key === burgerArray[i].id){
-              burgerArray[i].button = false;  
+              burgerArray[i].button = false; 
+              popItemfromCart(burgerArray[i]) 
+              setPageRefersh(!pageRefersh)
+
   }
   // setPizzas( pizzas.filter(item=> item.id   !==   id_key  ));
-   setPageRefersh(!pageRefersh)
+
     }
   }
 
@@ -101,7 +143,7 @@ function Cardd({fetchburgers , pizza_adder ,pizza_deleter ,cartChk,item_descript
                                           <Card.Title>{item.BurgerName}<span style={{marginLeft: '16px' ,color:'red'}}>₹{item.price}</span></Card.Title>
                                              
                                              
-                                            <div style={{display:'flex'}}> { item.button ? <Button variant="primary" onClick={()=>dltpizza(item.Main_id,item.id)} style={{fontSize:'smaller',padding:'9px 4px',marginRight:'auto'}}>Remove from cart</Button> :<Button variant="primary" onClick={()=>burger_add(item.Main_id,item.id)}>Add to cart</Button>}
+                                            <div style={{display:'flex'}}> { item.button ? <Button variant="primary" onClick={()=>dltburger(item.Main_id,item.id)} style={{fontSize:'smaller',padding:'9px 4px',marginRight:'auto'}}>Remove from cart</Button> :<Button variant="primary" onClick={()=>burger_add(item.Main_id,item.id)}>Add to cart</Button>}
                                              
                                              <Button variant="danger" onClick={()=>{
                                                                                   item_description(item.Main_id,item.id)

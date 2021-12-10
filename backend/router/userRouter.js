@@ -13,7 +13,7 @@ router.use(cookieparser())
 router.post("/signup", async (req,res)=>{
 
 try{
-    console.log('signup1');
+
     
     const { name , email, address , phone, password, cpassword} = req.body 
     console.log({ name , email, address , phone, password, cpassword});

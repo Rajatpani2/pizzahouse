@@ -67,7 +67,7 @@ try{
    },[])
 
    
-  const pizza_add = (Main_id,id_key)=>{
+  const pizza_add =async (Main_id,id_key)=>{
   //  let local_variable = pizzas
    console.log("this is frontend");
    
@@ -77,22 +77,66 @@ try{
                 pizzas[i].button =true
                 // setPizzas(pizzas)
                 setPageRefersh(!pageRefersh)
+                pushItemtoCart(pizzas[i])
 
             }
           
           }
   }
 
+  const pushItemtoCart = async (item_)=>{
+          
+    const res = await fetch("/additems",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        pizzaname:item_.BurgerName,
+        price:item_.price,
+        count:item_.count,
+        Main_id:item_.Main_id,
+        id:item_.id,
+        _id:item_._id
+      })
+    })
+
+    await res.json()
+  }
+
   //pizza deledte
+  const  popItemfromCart=async(item_)=>{
+    // console.log(item_);
+    
+    try{
+      const res = await fetch("/removeitem",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({ _id:item_._id})
+          
+        
+      }) 
+      await res.json()
+      
+
+    }catch(e){
+    console.log(e);
+    
+    }
+      }
 
   const dltpizza =(Main_id,id_key)=>{
               
     for( var i=0 ; i < pizzas.length ; i++){
          if(id_key === pizzas[i].id){
               pizzas[i].button = false;  
+              popItemfromCart(pizzas[i])
+              setPageRefersh(!pageRefersh)
   }
   // setPizzas( pizzas.filter(item=> item.id   !==   id_key  ));
-   setPageRefersh(!pageRefersh)
+
     }
   }
 
