@@ -9,7 +9,7 @@ import Spinner from 'react-bootstrap/Spinner'
 
 
 
-function Cardd({fetchpizza, pizza_adder ,pizza_deleter ,cartChk,item_description , description}) {
+function Cardd({cartChk,item_description , description}) {
 
   const [topupPage, settopupPage] = useState(false);
   const [pizzas, setPizzas] = useState([])
@@ -45,9 +45,7 @@ try{
     const items = await data.json();
     
     if(data && data.status === 200){
-      
-      fetchpizza(items)
-     
+           
       setPizzas(items)
       setTimeout(()=>{
         setLoading(!loading)
@@ -217,11 +215,6 @@ if(loading){
         }
         </div>
               
-  
-  
-    
-      
-      
       </>
   )
 }

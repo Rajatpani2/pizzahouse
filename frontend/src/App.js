@@ -55,56 +55,7 @@ function App() {
 
      const[description, setDescription] = useState([items[0]])
 
-     //fetch items
 
-
-     const fetchpizza =async (pizzas_from_bakend)=>{
-        // console.log(pizzas_from_bakend);
-        // eslint-disable-next-line
-      var pizzas = await pizzas_from_bakend
-      //  setPizzas(pizzas_from_bakend)
-      //  console.log(pizzas);
-       return pizzas
-       
-     }
-    //  console.log('3');
-     
-     const fetchburger=(brugers_from_backend)=>{
-      // eslint-disable-next-line
-       var burgers = brugers_from_backend
-       
-      //  setBurgers(brugers_from_backend)
-      return burgers
-    }
-          
-        
-      
-      //deletion part
-
-       const dltItem =(Main_id,id_key)=>{
-              
-                  for( var i=0 ; i < items.length ; i++){
-                       if(id_key === items[i].id){
-                           
-                            items[i].button = false;
-                            
-                }
-                setcart( cart.filter(item=> item.id   !==   id_key  ));
-        }
-      
-        if(Main_id === items2[0].Main_id){
-          for(  i=0 ; i < items2.length ; i++){
-            if(id_key === items2[i].id){
-                
-                 
-                 items2[i].button = false  ;
-                 
-     }
-               setcart( cart.filter(item=> item.id   !==   id_key  ));
-                       
-              }
-        }
-      }
       
       //cart checker function
 
@@ -208,10 +159,10 @@ const loggedinUser = async()=>{
         
     <div className="App">
           <Router>
-             <Navvbar cartChk={cartChecker} loggedUser={loggedUser} loggedinUser={loggedinUser}/>
+             <Navvbar cartChk={cartChecker} loggedUser={loggedUser} loggedinUser={loggedinUser} />
 
              <Switch>
-                <Route path='/' exact > <HomePage fetchpizza= {fetchpizza} fetchburgers={fetchburger}  pizza_deleter={dltItem} cartChk={cartChecker} item_description={item_description} description={description}/></Route>
+                <Route path='/' exact > <HomePage   cartChk={cartChecker} item_description={item_description} description={description}/></Route>
 
                  <Route path='/thanks' exact><Thankspage List={cart} /></Route>
                  <Route path='/cart' exact>{isempty ? <Cart List={cart}  cartChecker={cartChecker} changeHandler={handleChange} _name={details.name} _mobile={details.mobile} _altmobile={details.altmobile} _address={details.address} _pin={details.pin} _details={details} cart_empty={empty_cart}/>:<EmptyCart/>}</Route>

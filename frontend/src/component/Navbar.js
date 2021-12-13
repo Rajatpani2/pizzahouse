@@ -22,7 +22,6 @@ useEffect(() => {
 const handleClickon = ()=>setclick(!click);
 
 const logotfunction=async()=>{
-  // console.log('bla');
   
   try{
     const res = await fetch("/logout",{
@@ -35,12 +34,13 @@ const logotfunction=async()=>{
     })
      await res.json()
     if(res.status === 200 ){
-      alert("logout successfull")
       loggedinUser()
       history.push("/")
+      alert("logout successfull")
     }
    
   }catch(e){
+   console.log(e);
    
   }
 }
@@ -53,10 +53,10 @@ const logotfunction=async()=>{
     <Navbar.Brand href="#home">PizzaHouse</Navbar.Brand>
     <Nav className='mr-auto'>
 
-     <Link to="/"><Nav.Link href="/">Home</Nav.Link></Link>
-     <Link to="/signup"> <Nav.Link href="/signup">Signup</Nav.Link></Link>
-     <Link to="/login"> <Nav.Link href="/login">Login</Nav.Link></Link>
-     <Link to="" onClick={logotfunction}> <Nav.Link href="" >Logout</Nav.Link></Link>
+               <Link to="/"><Nav.Link href="/">Home</Nav.Link></Link>
+               <Link to="/signup"> <Nav.Link href="/signup">Signup</Nav.Link></Link>
+  {!loggedUser? <Link to="/login"> <Nav.Link href="/login">Login</Nav.Link></Link> :
+               <Link to="" onClick={logotfunction}> <Nav.Link href="">Logout</Nav.Link></Link>}
         
     </Nav>
    

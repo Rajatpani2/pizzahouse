@@ -9,7 +9,7 @@ import Spinner from 'react-bootstrap/Spinner'
 
 
 
-function Cardd({fetchburgers , pizza_adder ,pizza_deleter ,cartChk,item_description , description}) {
+function Cardd({ cartChk,item_description , description}) {
 
   const [topupPage, settopupPage] = useState(false);
   const [burgerArray, setburgerArray] = useState([])
@@ -44,7 +44,6 @@ function Cardd({fetchburgers , pizza_adder ,pizza_deleter ,cartChk,item_descript
 
     if (data && response.status === 200){
       setburgerArray(data)
-      fetchburgers(data)
       setTimeout(()=>{
         setLoading(!loading)
       },5000)
