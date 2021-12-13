@@ -15,11 +15,11 @@ router.post("/signup", async (req,res)=>{
 try{
 
     
-    const { name , email, address , phone, password, cpassword} = req.body 
-    console.log({ name , email, address , phone, password, cpassword});
+    const { fullname,lname,fname , email, address , phone, password, cpassword} = req.body 
+    console.log({ fullname,lname,fname , email, address , phone, password, cpassword});
     
 
-    if( !name || !email || !address || !phone || !password || !cpassword ){
+    if(!fullname || !lname|| !fname || !email || !address || !phone || !password || !cpassword ){
               res.status(422).send({message:"must enter all the fields"})
 
     }else if(password !== cpassword){
@@ -34,7 +34,9 @@ try{
     }
             else{
                 const newUser = await new usermodel({
-                        name:name,
+                        firstname:fname,
+                        lastname:lname,
+                        fullname:fullname,
                         email:email,
                         address:address,
                         phone:phone,

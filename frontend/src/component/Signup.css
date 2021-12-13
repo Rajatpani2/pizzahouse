@@ -20,7 +20,7 @@
 }
  .signup_submit_btn{
     position: absolute;
-    left: 48%;
+    left: 55%;
     bottom: 10%;
     background-color: rgb(13, 113, 180);
     font-size: large;
@@ -28,7 +28,7 @@
     border-radius: 4px;
     border:none;
     color: white;
-
+    
 }
 .signup_submit_btn:hover{
     background-color: rgb(8, 8, 126);

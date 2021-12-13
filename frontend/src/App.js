@@ -184,7 +184,6 @@ const loggedinUser = async()=>{
     if(userData && res.status === 200){
       setLoggedUser(userData)
       
-  
     }
     else{
       setLoggedUser()

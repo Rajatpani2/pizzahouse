@@ -4,7 +4,9 @@ import {useHistory} from "react-router-dom"
 
 const Signup = () => {
 const [signup_details, setSignup_details] = useState({
-  name:"",
+  fname:"",
+  lname:"",
+  fullname:"",
   email:"",
   password:"",
   cpassword:"",
@@ -30,7 +32,9 @@ try{
         "Content-Type":"application/json"
       },
       body:JSON.stringify({
-        name:signup_details.name,
+        fname:signup_details.fname,
+        lname:signup_details.lname,
+        fullname:`${signup_details.fname} ${signup_details.lname}` ,
         email:signup_details.email,
         password:signup_details.password,
         cpassword:signup_details.cpassword,
@@ -64,8 +68,13 @@ try{
                   <div className="left_side_form">
                       
                       <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Name</label>
-                        <input onChange={signupChangeHandler} value={signup_details.name} name="name"type="text" class="form-control" id="exampleFormControlInput0" placeholder="antony gunsalvis"/>
+                        <label for="exampleFormControlInput1" class="form-label">firstName</label>
+                        <input onChange={signupChangeHandler} value={signup_details.fname} name="fname" type="text" class="form-control" id="exampleFormControlInput0" placeholder="antony"/>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">LastName</label>
+                        <input onChange={signupChangeHandler} value={signup_details.lname} name="lname" type="text" class="form-control" id="exampleFormControlInput0" placeholder=" gunsalvis"/>
                       </div>
                      
                      

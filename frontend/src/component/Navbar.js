@@ -61,7 +61,7 @@ const logotfunction=async()=>{
     </Nav>
    
     <Link to='/cart' style={{color:'#ffffff', textDecoration:'none'}}>Cart <FontAwesomeIcon icon="shopping-cart" className='footer_icons' style={{color:'#ffffff', marginRight:'4px'}} onClick={cartChk}/></Link>
-    <Link to='' style={{color:'#ffffff', textDecoration:'none',marginLeft:"10px"}}>{loggedUser ? loggedUser.name: "Guest"} <FontAwesomeIcon icon="user" className='footer_icons' style={{color:'#ffffff', marginRight:'4px'}}/></Link>
+    <Link to='' style={{color:'#ffffff', textDecoration:'none',marginLeft:"10px"}}>{loggedUser ? loggedUser.firstname: "Guest"} <FontAwesomeIcon icon="user" className='footer_icons' style={{color:'#ffffff', marginRight:'4px'}}/></Link>
 
     {!click ? <FontAwesomeIcon icon="bars" style={{color:'white'}} onClick={handleClickon} className='fa_bars'/> :  <FontAwesomeIcon icon="times" style={{color:'white'}} onClick={handleClickon} className='fa_timess'/>}
     
