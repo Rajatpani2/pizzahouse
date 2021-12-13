@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navvbar from './component/Navbar';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTimesCircle,faPizzaSlice, faAddressBook ,faMapMarked, faConciergeBell, faGlasses,faBars,faTimes,faPlus,faMinus, faShoppingCart,faArrowLeft,faGrinBeam ,faUser} from '@fortawesome/free-solid-svg-icons'
+import { faTimesCircle,faPizzaSlice,faHamburger, faAddressBook ,faMapMarked, faConciergeBell, faGlasses,faBars,faTimes,faPlus,faMinus, faShoppingCart,faArrowLeft,faGrinBeam ,faUser} from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import HomePage from './component/HomePage';
 import {  BrowserRouter as Router , Switch, Route } from 'react-router-dom'
@@ -20,7 +20,7 @@ import Login from './component/Login';
 
 
 
-library.add( fab,faTimesCircle, faPizzaSlice, faAddressBook , faMapMarked , faConciergeBell, faGlasses, faBars, faTimes,faPlus,faMinus, faShoppingCart,faArrowLeft,faGrinBeam ,faUser)
+library.add( fab,faTimesCircle,faHamburger, faPizzaSlice, faAddressBook , faMapMarked , faConciergeBell, faGlasses, faBars, faTimes,faPlus,faMinus, faShoppingCart,faArrowLeft,faGrinBeam ,faUser)
 
 const details_obj = createContext();
 const order_details = createContext();
