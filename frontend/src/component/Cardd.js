@@ -49,7 +49,7 @@ try{
       setPizzas(items)
       setTimeout(()=>{
         setLoading(!loading)
-      },4000)
+      },0)
       
     }
     
