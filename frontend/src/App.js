@@ -1,9 +1,9 @@
-import React,{createContext} from 'react'
+import React,{createContext, useEffect} from 'react'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navvbar from './component/Navbar';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTimesCircle,faPizzaSlice, faAddressBook ,faMapMarked, faConciergeBell, faGlasses,faBars,faTimes,faPlus,faMinus, faShoppingCart,faArrowLeft,faGrinBeam } from '@fortawesome/free-solid-svg-icons'
+import { faTimesCircle,faPizzaSlice,faHamburger, faAddressBook ,faMapMarked, faConciergeBell, faGlasses,faBars,faTimes,faPlus,faMinus, faShoppingCart,faArrowLeft,faGrinBeam ,faUser} from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import HomePage from './component/HomePage';
 import {  BrowserRouter as Router , Switch, Route } from 'react-router-dom'
@@ -20,7 +20,7 @@ import Login from './component/Login';
 
 
 
-library.add( fab,faTimesCircle, faPizzaSlice, faAddressBook , faMapMarked , faConciergeBell, faGlasses, faBars, faTimes,faPlus,faMinus, faShoppingCart,faArrowLeft,faGrinBeam )
+library.add( fab,faTimesCircle,faHamburger, faPizzaSlice, faAddressBook , faMapMarked , faConciergeBell, faGlasses, faBars, faTimes,faPlus,faMinus, faShoppingCart,faArrowLeft,faGrinBeam ,faUser)
 
 const details_obj = createContext();
 const order_details = createContext();
@@ -32,6 +32,8 @@ function App() {
   
 
       const [cart, setcart] = useState([]); //cart array
+      const [loggedUser, setLoggedUser] = useState() //loged in user data
+
 
 
       // check wheather the cart is empty of haveing some values
@@ -53,92 +55,7 @@ function App() {
 
      const[description, setDescription] = useState([items[0]])
 
-     //fetch items
 
-
-     const fetchpizza =async (pizzas_from_bakend)=>{
-        // console.log(pizzas_from_bakend);
-        // eslint-disable-next-line
-      var pizzas = await pizzas_from_bakend
-      //  setPizzas(pizzas_from_bakend)
-       console.log(pizzas);
-       return pizzas
-       
-     }
-    //  console.log('3');
-     
-     const fetchburger=(brugers_from_backend)=>{
-      // eslint-disable-next-line
-       var burgers = brugers_from_backend
-       
-      //  setBurgers(brugers_from_backend)
-      return burgers
-    }
-   
-  
-  
-   
-
-
-// console.log('4');
-
-      //addition part
-       const addItem = (Main_id,id_key) => {
-         
-        if(Main_id === items[0].Main_id){
-
-          for(var i=0 ; i < items.length ; i++ ){
-            if( id_key === items[i].id){
-                setcart([...cart,items[i]])
-                items[i].button = true ;
-            }
-          
-          }
-        }
-        if(Main_id === items2[0].Main_id){
-
-          for( i=0 ; i < items2.length ; i++ ){
-            if( id_key === items2[i].id){
-                setcart([...cart,items2[i]])
-                items2[i].button = true ;
-            }
-          
-          }
-        }
-           
-          
-           
-          }
-          
-        
-      
-      //deletion part
-
-       const dltItem =(Main_id,id_key)=>{
-              
-        if(Main_id === items[0].Main_id){
-                  for( var i=0 ; i < items.length ; i++){
-                       if(id_key === items[i].id){
-                           
-                            items[i].button = false;
-                            
-                }
-                setcart( cart.filter(item=> item.id   !==   id_key  ));
-        }
-      }
-        if(Main_id === items2[0].Main_id){
-          for(  i=0 ; i < items2.length ; i++){
-            if(id_key === items2[i].id){
-                
-                 
-                 items2[i].button = false  ;
-                 
-     }
-               setcart( cart.filter(item=> item.id   !==   id_key  ));
-                       
-              }
-        }
-      }
       
       //cart checker function
 
@@ -201,9 +118,38 @@ function App() {
     
 
 
-
-
+//loggedin users authentication function
+const loggedinUser = async()=>{
+  try{
+    const res = await fetch("/navbar",{
+      method:"GET",
+      headers:{
+        Accept:"application/json",
+      "Content-Type":"application/json"
+      },
+      credentials:"include"
+    })
+  
+    const userData = await res.json()
     
+    if(userData && res.status === 200){
+      setLoggedUser(userData)
+      
+    }
+    else{
+      setLoggedUser()
+    }
+  }catch(e){
+   console.log(e);
+   
+  }
+  }
+
+
+  // authentication function call ends
+  useEffect(()=>{
+    loggedinUser()
+  },[])
     
        
 
@@ -213,18 +159,15 @@ function App() {
         
     <div className="App">
           <Router>
-             <Navvbar cartChk={cartChecker}/>
+             <Navvbar cartChk={cartChecker} loggedUser={loggedUser} loggedinUser={loggedinUser} />
 
              <Switch>
-                <Route path='/' exact > <HomePage fetchpizza= {fetchpizza} fetchburgers={fetchburger} pizza_adder= {addItem}  pizza_deleter={dltItem} cartChk={cartChecker} item_description={item_description} description={description}/></Route>
-{/*                 
-                 {isempty ? <Route path='/cart' exact> <Cart List={cart}  cartChecker={cartChecker} changeHandler={handleChange} _name={details.name} _mobile={details.mobile} _altmobile={details.altmobile} _address={details.address} _pin={details.pin} _details={details} cart_empty={empty_cart}/>   </Route>:  <Route path='/cart'><EmptyCart/></Route>}
-                {isempty ? <Route path='/thanks' exact> <Thankspage List={cart} cartChecker={cartChecker}/></Route>:<EmptyCart/>}
-                   */}
+                <Route path='/' exact > <HomePage   cartChk={cartChecker} item_description={item_description} description={description}/></Route>
+
                  <Route path='/thanks' exact><Thankspage List={cart} /></Route>
                  <Route path='/cart' exact>{isempty ? <Cart List={cart}  cartChecker={cartChecker} changeHandler={handleChange} _name={details.name} _mobile={details.mobile} _altmobile={details.altmobile} _address={details.address} _pin={details.pin} _details={details} cart_empty={empty_cart}/>:<EmptyCart/>}</Route>
                  <Route path="/signup" exact><Signup/></Route>
-                 <Route path="/login" exact><Login/></Route>
+                 <Route path="/login" exact><Login logedinuserdata={loggedinUser}/></Route>
            </Switch>
          </Router>
        

@@ -135,7 +135,25 @@
   .division_des_inside::-webkit-scrollbar-thumb:hover {
     background: rgb(15, 155, 248,0.5); 
   }
+.loading{
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.loading h3{
+  padding-top: 10px;
+}
+.square {
+	transform: rotate(360deg);
+	animation: rotateAnimation 1.6s linear infinite;
+}
 
+@keyframes rotateAnimation {
+	from {transform: rotateY(0deg);}
+	to {transform: rotateY(360deg);}
+}
   
   
 

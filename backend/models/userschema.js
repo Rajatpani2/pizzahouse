@@ -5,7 +5,15 @@ const jwt = require("jsonwebtoken")
 
 
 const userSChema = new mongoose.Schema({
-    name:{
+    firstname:{
+       type:String,
+       required:true
+    },
+    lastname:{
+       type:String,
+       required:true
+    },
+    fullname:{
         type:String,
         required:true
     },
@@ -36,7 +44,27 @@ const userSChema = new mongoose.Schema({
            type:String,
            required:true
       }
-    }]
+    }],
+    cart:[
+        {
+            itemname:{
+               type:String
+           } ,
+           price:{
+               type:String
+           },
+           count:{
+               type:Number
+           },
+           Main_id:{
+               type:String
+           },
+           id:{
+               type:String 
+           }
+
+        }
+    ]
       
     
 
@@ -58,6 +86,36 @@ userSChema.methods.generateAuthToken = async function(){
         this.tokens= this.tokens.concat({token:new_token})
         await this.save()
         return new_token
+    }catch(e){
+     console.log(e);
+     
+    }
+}
+
+userSChema.methods.cartPushITems = async function(product_frm_client){
+    // console.log(product_frm_client);
+    try{
+        // console.log(this.cart);
+        
+     this.cart= this.cart.concat(product_frm_client)
+     await this.save()
+    }catch(e){
+     console.log(e);
+     
+    }
+    
+}
+
+
+userSChema.methods.cartpopItems = async function(id){
+    
+    try{
+        function filterArray(item){
+           return id !== item._id.toString()
+        }  
+      this.cart= this.cart.filter(filterArray)
+    await this.save()
+     
     }catch(e){
      console.log(e);
      

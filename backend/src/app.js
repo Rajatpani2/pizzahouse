@@ -6,13 +6,19 @@ require("../db/connection")
 const productmodel = require("../models/productschema")
 const burgermodel = require("../models/burgerschema")
 // const { response } = require('express')
-const router = require("../router/userRouter")
+const userRouter = require("../router/userRouter")
+const cartRouter = require("../router/cartRouter")
+
+const cookieparser = require("cookie-parser")
 
 
 
 app.use(express.json())
 // app.use(bodyparser())
-app.use(router)
+app.use(userRouter)
+app.use(cartRouter)
+
+app.use(cookieparser())
 
 
 
