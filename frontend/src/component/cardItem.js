@@ -1,7 +1,7 @@
 
 
 export const items=[{
-    PizzaName:'Paneer Tikki Pizza',
+    ItemName:'Paneer Tikki Pizza',
     price:100.25,
     Main_id:1,
     id:'PO01',
@@ -11,7 +11,7 @@ export const items=[{
     image: 'https://media.istockphoto.com/photos/cheesy-pepperoni-pizza-picture-id938742222?k=6&m=938742222&s=612x612&w=0&h=on_9ZYG1SG4Xgk7BLZSlaXJl8VYb6ZePDHTN6zukDHM='
 },
 {
-    PizzaName:'Pan fried pizza',
+    ItemName:'Pan fried pizza',
     price:150.70,
     Main_id:1,
     id:'PO02',
@@ -21,7 +21,7 @@ export const items=[{
     image:'https://tastesbetterfromscratch.com/wp-content/uploads/2019/03/Pepperoni-Pizza-10-500x500.jpg'
 },
 {
-    PizzaName:'Margaretta',
+    ItemName:'Margaretta',
     price:112.50,
     Main_id:1,
     id:'PO03',
@@ -32,7 +32,7 @@ export const items=[{
 }
 ,
 {
-    PizzaName:'Deluxe Veggie',
+    ItemName:'Deluxe Veggie',
     price:115.70,
     Main_id:1,
     id:'PO04',
@@ -42,7 +42,7 @@ export const items=[{
     image:'https://i2-prod.mirror.co.uk/incoming/article7440243.ece/ALTERNATES/s615/Pizza-Hut.jpg'
 },
 {
-    PizzaName:'Peppy Paneer',
+    ItemName:'Peppy Paneer',
     price:120.00,
     Main_id:1,
     id:'PO05',
@@ -53,7 +53,7 @@ export const items=[{
 },
 
 {
-    PizzaName:'Mexican Wave',
+    ItemName:'Mexican Wave',
     price:180.00,
     Main_id:1,
     id:'PO06',

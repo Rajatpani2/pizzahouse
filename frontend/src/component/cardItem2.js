@@ -1,5 +1,5 @@
 export const items2=[{
-    PizzaName:'Whopper Meal',
+    ItemName:'Whopper Meal',
     price:70.25,
     Main_id:2,
     id:'BO01',
@@ -9,7 +9,7 @@ export const items2=[{
     image: 'https://media-cldnry.s-nbcnews.com/image/upload/newscms/2019_21/2870431/190524-classic-american-cheeseburger-ew-207p-2870431.jpg'
 },
 {
-    PizzaName:'backon doubble Xl',
+    ItemName:'backon doubble Xl',
     price:150.70,
     Main_id:2,
     id:'BO02',
@@ -19,7 +19,7 @@ export const items2=[{
     image:'https://zosgoodburger.com/wp-content/uploads/2019/08/Zos-Southwest-Burger.png'
 },
 {
-    PizzaName:'Bacon King',
+    ItemName:'Bacon King',
     price:112.50,
     Main_id:2,
     id:'BO03',
@@ -30,7 +30,7 @@ export const items2=[{
 }
 ,
 {
-    PizzaName:'Crispy chicken',
+    ItemName:'Crispy chicken',
     price:115.70,
     Main_id:2,
     id:'BO04',
@@ -40,7 +40,7 @@ export const items2=[{
     image:'https://www.jessicagavin.com/wp-content/uploads/2020/05/grilled-burgers-34-1200.jpg'
 },
 {
-    PizzaName:'Steak Mouse',
+    ItemName:'Steak Mouse',
     price:122.00,
     Main_id:2,
     id:'BO05',
@@ -51,7 +51,7 @@ export const items2=[{
 },
 
 {
-    PizzaName:'crispy Veg',
+    ItemName:'crispy Veg',
     price:190.00,
     Main_id:2,
     id:'BO06',

@@ -6,7 +6,7 @@ const mongoose = require("mongoose")
 
 
 const productSchema = new mongoose.Schema([{
-    PizzaName:{
+    ItemName:{
         type:String,
         required:true,
         unique:true
