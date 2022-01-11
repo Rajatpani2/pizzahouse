@@ -65,7 +65,6 @@ function Cart({List,cartChecker,changeHandler,_altmobile,_address,_mobile, _name
                if (List[i]){
                   total += List[i].count * List[i].price
                   result = total.toFixed(2);
-                  
                   items += List[i].count;
            
                }

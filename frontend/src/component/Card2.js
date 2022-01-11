@@ -46,7 +46,7 @@ function Cardd({ cartChk,item_description , description}) {
       setburgerArray(data)
       setTimeout(()=>{
         setLoading(!loading)
-      },5000)
+      },0)
     }
      
    }
@@ -58,7 +58,7 @@ function Cardd({ cartChk,item_description , description}) {
         "Content-Type":"application/json"
       },
       body:JSON.stringify({
-        itemname:item_.BurgerName,
+        itemname:item_.ItemName,
         price:item_.price,
         count:item_.count,
         Main_id:item_.Main_id,
@@ -150,7 +150,7 @@ if(loading){
                           <Card style={{ width: '18rem' }}>
                                  <figure className='img_contain'><Card.Img variant="top" src={item.image} /></figure> 
                                      <Card.Body>
-                                        <Card.Title>{item.BurgerName}<span style={{marginLeft: '16px' ,color:'red'}}>₹{item.price}</span></Card.Title>
+                                        <Card.Title>{item.ItemName}<span style={{marginLeft: '16px' ,color:'red'}}>₹{item.price}</span></Card.Title>
                                            
                                            
                                           <div style={{display:'flex'}}> { item.button ? <Button variant="primary" onClick={()=>dltburger(item.Main_id,item.id)} style={{fontSize:'smaller',padding:'9px 4px',marginRight:'auto'}}>Remove from cart</Button> :<Button variant="primary" onClick={()=>burger_add(item.Main_id,item.id)}>Add to cart</Button>}
