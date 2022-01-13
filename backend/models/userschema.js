@@ -47,7 +47,7 @@ const userSChema = new mongoose.Schema({
     }],
     cart:[
         {
-            itemname:{
+            ItemName:{
                type:String
            } ,
            price:{
@@ -61,6 +61,9 @@ const userSChema = new mongoose.Schema({
            },
            id:{
                type:String 
+           },
+           image:{
+               type:String
            }
 
         }

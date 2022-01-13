@@ -9,7 +9,7 @@ import Spinner from 'react-bootstrap/Spinner'
 
 
 
-function Cardd({ cartChk,item_description , description}) {
+function Cardd({ cartChk,item_description , description,additem_to_local_cart}) {
 
   const [topupPage, settopupPage] = useState(false);
   const [burgerArray, setburgerArray] = useState([])
@@ -58,12 +58,13 @@ function Cardd({ cartChk,item_description , description}) {
         "Content-Type":"application/json"
       },
       body:JSON.stringify({
-        itemname:item_.ItemName,
+        Itemname:item_.ItemName,
         price:item_.price,
         count:item_.count,
         Main_id:item_.Main_id,
         id:item_.id,
-        _id:item_._id
+        _id:item_._id,
+        image:item_.image
       })
     })
 

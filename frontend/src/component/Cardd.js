@@ -9,7 +9,7 @@ import Spinner from 'react-bootstrap/Spinner'
 
 
 
-function Cardd({cartChk,item_description , description}) {
+function Cardd({cartChk,item_description , description,additem_to_local_cart}) {
 
   const [topupPage, settopupPage] = useState(false);
   const [pizzas, setPizzas] = useState([])
@@ -72,7 +72,7 @@ try{
    
   const pizza_add =async (Main_id,id_key)=>{
   //  let local_variable = pizzas
-   console.log("this is frontend");
+  //  console.log("this is frontend");
    
           for(var i=0 ; i < pizzas.length ; i++ ){
             if( id_key === pizzas[i].id){
@@ -95,16 +95,21 @@ try{
         "Content-Type":"application/json"
       },
       body:JSON.stringify({
-        itemname:item_.ItemName,
+        ItemName:item_.ItemName,
         price:item_.price,
         count:item_.count,
         Main_id:item_.Main_id,
         id:item_.id,
-        _id:item_._id
+        _id:item_._id,
+        image:item_.image
       })
     })
 
     await res.json()
+    // console.log(res.status)
+    if(res.status===200){
+      additem_to_local_cart(item_)
+    }
   }
 
   //pizza deledte
@@ -142,6 +147,8 @@ try{
 
     }
   }
+  console.log(pizzas)
+
 if(loading){
      return(
        <div className="loading">
@@ -165,7 +172,7 @@ if(loading){
                                         <Card.Title>{item.ItemName}<span style={{marginLeft: '16px' ,color:'red'}}>₹{item.price}</span></Card.Title>
                                            
                                            
-                                          <div style={{display:'flex'}}> { item.button ? <Button variant="primary" onClick={()=>dltpizza(item.Main_id,item.id)} style={{fontSize:'smaller',padding:'9px 4px',marginRight:'auto'}}>Remove from cart</Button> :<Button variant="primary" onClick={()=>pizza_add(item.Main_id,item.id)}>Add to cart</Button>}
+                                          <div style={{display:'flex'}}> { item.button ? <Button id="add_to_cart_btn"variant="primary" onClick={()=>dltpizza(item.Main_id,item.id)} style={{fontSize:'smaller',padding:'9px 4px',marginRight:'auto'}}>Remove from cart</Button> :<Button variant="primary" id="remove_from_cart" onClick={()=>pizza_add(item.Main_id,item.id)}>Add to cart</Button>}
                                            
                                            <Button variant="danger" onClick={()=>{
                                                                                 item_description(item.Main_id,item.id)

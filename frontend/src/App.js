@@ -55,13 +55,19 @@ function App() {
 
      const[description, setDescription] = useState([items[0]])
 
+     const additem_to_local_cart =(new_item)=>{
+        // console.log("im")
+      setcart([...cart,new_item])
+    }
+    console.log(cart)
+
 
       
       //cart checker function
 
       const cartChecker =()=>{
-        console.log("this is called");
-        cart.length=1
+        console.log("cart checker is called");
+        // cart.length=1
         if(cart.length < 1){
           console.log(cart.length);
           
@@ -162,7 +168,7 @@ const loggedinUser = async()=>{
              <Navvbar cartChk={cartChecker} loggedUser={loggedUser} loggedinUser={loggedinUser} />
 
              <Switch>
-                <Route path='/' exact > <HomePage   cartChk={cartChecker} item_description={item_description} description={description}/></Route>
+                <Route path='/' exact > <HomePage  additem_to_local_cart={additem_to_local_cart} cartChk={cartChecker} item_description={item_description} description={description}/></Route>
 
                  <Route path='/thanks' exact><Thankspage List={cart} /></Route>
                  <Route path='/cart' exact>{isempty ? <Cart List={cart}  cartChecker={cartChecker} changeHandler={handleChange} _name={details.name} _mobile={details.mobile} _altmobile={details.altmobile} _address={details.address} _pin={details.pin} _details={details} cart_empty={empty_cart}/>:<EmptyCart/>}</Route>

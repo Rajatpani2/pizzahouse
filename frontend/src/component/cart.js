@@ -1,10 +1,11 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import './cart.css'
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Form from 'react-bootstrap/Form'
 import {Pin} from './Pin'
+import Footer from "./Footer"
 
 
 
@@ -14,7 +15,6 @@ function Cart({List,cartChecker,changeHandler,_altmobile,_address,_mobile, _name
 
         const [pageRefresher,setPageRefresher] = useState(false);
         cartChecker();
-        
 //error object state
         const [error_name, setError_name] = useState('');
         const [error_mob, seterror_mob] = useState('');
@@ -22,13 +22,14 @@ function Cart({List,cartChecker,changeHandler,_altmobile,_address,_mobile, _name
         const [error_address, seterror_address] = useState('');
         const [error_pin,setPin] =useState('');
          
+        const [cart_data, setcart_data] = useState([])
        
    
-              const increaseValuee =(key_id)=>{
-                    var i;
+          const increaseValuee =(key_id)=>{
+                   
                     
                    
-                    for( i=0 ; i < List.length ; i++ ){
+                    for(let i=0 ; i < List.length ; i++ ){
                            if(key_id === List[i].id & List[i].count === 10){
                               alert('cant');
                            
@@ -42,7 +43,6 @@ function Cart({List,cartChecker,changeHandler,_altmobile,_address,_mobile, _name
                      setPageRefresher(!pageRefresher);
                  };
   
-      //   console.log(cart_value);
            
         
            const decreaseValue=(key_id)=>{
@@ -166,11 +166,32 @@ function Cart({List,cartChecker,changeHandler,_altmobile,_address,_mobile, _name
 
 
           }
+  const cartItems=async()=>{
+        try {
+            const res = await fetch("/cartitem",{
+              method:"GET",
+              headers:{
+                "Content-Type":"application/json"
+              }
+            })
+
+          const cartData = await res.json()
+          setcart_data(cartData)
+          console.log(cartData)
+
+        } catch (error) {
+          console.log(error)
+        }
+  } 
+
+          useEffect(()=>{
+            cartItems()
+          },[])
 
           
           
        
-
+// console.log(List)
        return (
         <>
         <div className="cart_container">
@@ -188,11 +209,11 @@ function Cart({List,cartChecker,changeHandler,_altmobile,_address,_mobile, _name
           </thead>
           <tbody>
 
-         {List.map(item => {
+         {cart_data.map(item => {
           return (
       
           <tr key={item.id} className='table_row'>
-              <td><div className='product_details_cart'><div className='product_img_cart'><img src={item.image} alt="img_" /></div><div>{item.PizzaName}</div></div></td>
+              <td><div className='product_details_cart'><div className='product_img_cart'><img src={item.image} alt="img_" /></div><div>{item.ItemName}</div></div></td>
               <td>₹ {item.price}</td>
               <td><div className='count_container'><Link to='/cart'><button className='value_btn' onClick={()=>decreaseValue(item.id)}><FontAwesomeIcon className='Plus_minus_icon' icon='minus' /></button></Link><div className="box">{item.count}</div><Link to='/cart'><button className='value_btn' onClick={()=> increaseValuee(item.id)}><FontAwesomeIcon className='Plus_minus_icon' icon='plus' /></button></Link></div></td>
               <td>₹ {sumValue( item.count , item.price )}</td>
@@ -206,7 +227,7 @@ function Cart({List,cartChecker,changeHandler,_altmobile,_address,_mobile, _name
 
 
           
-                 <Link to='/'> <Button variant="outline-primary"><FontAwesomeIcon icon="arrow-left" className='footer_icons' style={{color:'#ffffff', marginRight:'4px'}}/>Go back</Button> {' '}</Link> <Button variant="warning" onClick={cart_empty}>Clear all</Button>{' '}
+                 <Link to='/'> <Button variant="outline-primary" id="goback_home"><FontAwesomeIcon icon="arrow-left" className='footer_icons' style={{color:'#ffffff', marginRight:'4px'}}/>Go back</Button> {' '}</Link> <Button variant="warning" onClick={cart_empty}>Clear all</Button>{' '}
 
             </div>
             <div className="summary">
@@ -256,6 +277,7 @@ function Cart({List,cartChecker,changeHandler,_altmobile,_address,_mobile, _name
             </div>
         
         </div>
+        <Footer/>
            
         </>
     )

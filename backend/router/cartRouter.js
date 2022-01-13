@@ -39,4 +39,25 @@ router.post("/removeitem",authenticate ,async(req,res)=>{
      }
 })
 
+// get all the cart items
+
+router.get("/cartitem",authenticate,async (req,res)=>{
+   try {
+     if(req.rootuser){
+        res.status(200).send(req.rootuser.cart)
+        
+   
+     }
+     else{
+       res.status(300).send("user not loggedin")
+     }
+     
+   } catch (error) {
+     console.log(error)
+   }
+  
+
+})
+
+
 module.exports= router

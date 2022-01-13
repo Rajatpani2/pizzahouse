@@ -5,15 +5,15 @@ import Card2 from'./Card2';
 import Footer from './Footer';
 // import { Route} from "react-router-dom"
 
-function HomePage({cartChk,item_description,description, fetchpizza,fetchburgers}) {
+function HomePage({cartChk,item_description,description, fetchpizza,fetchburgers,additem_to_local_cart}) {
 
 
     
     return (
        <>
        <Home/>
-       <Cardd   cartChk={cartChk} item_description={item_description}  description={description}/>
-       <Card2   cartChk={cartChk} item_description={item_description}  description={description}/>
+       <Cardd additem_to_local_cart={additem_to_local_cart}  cartChk={cartChk} item_description={item_description}  description={description}/>
+       <Card2  additem_to_local_cart={additem_to_local_cart} cartChk={cartChk} item_description={item_description}  description={description}/>
        <Footer/>
    </>
     )
