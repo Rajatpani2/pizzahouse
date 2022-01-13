@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import "./Login.css"
-import { useHistory } from 'react-router-dom'
+import { useHistory,Link } from 'react-router-dom'
+import Footer from './Footer'
+
+
+
 
 const Login = ({logedinuserdata}) => {
 
@@ -55,18 +59,24 @@ const handleSubmit_login=async(e)=>{
 }
 
     return (
+        <>
         <div className="form-contain">
             <div className="login_form">
                 <form className="insideform">
                     <label htmlFor="">Email</label>
-                    <input type="email" name="email" value={login_user.email} onChange={logindata_changeHandler} placeholder="ex- abc@gmail.com"/>
+                    <input className='login_input' type="email" name="email" value={login_user.email} onChange={logindata_changeHandler} placeholder="ex- abc@gmail.com"/>
+                     <br />
                      <br />
                     <label htmlFor="">Password</label>
-                    <input type="password" name="password"  value={login_user.password} onChange={logindata_changeHandler} placeholder="enter password"/>
-                    <button type="submit" onClick={handleSubmit_login} id="login1">login</button>
+                    <input className='login_input' type="password" name="password"  value={login_user.password} onChange={logindata_changeHandler} placeholder="enter password"/>
+                    <button type="submit" onClick={handleSubmit_login} id="login1">Login</button>
+                    <div className='forgot_link'><Link>Forget Password</Link></div>
                 </form>
             </div>
         </div>
+        <Footer/>
+        </>
+
     )
 }
 
